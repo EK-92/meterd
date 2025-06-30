@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "meterd",
+  "version": "1.0",
+
+  "description": "Converts imperial measurements into metric ones",
+
+  "icons": {
+    "48": "icons/meterd-48.png",
+    "96": "icons/meterd-96.png"
+  },
+
+  "content_scripts": [
+    {
+      "js": ["meterd.js"]
+    }
+  ]
+}
