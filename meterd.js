@@ -17,7 +17,10 @@ const mappings = {
     { mile: { ratio: "1.609", metric_unit: "km" } },
   ],
   area: [
-    {},
+    { inch: { ratio: "6.45", metric_unit: "cm" } },
+    { foot: { ratio: "0.0929", metric_unit: "m" } },
+    { yard: { ratio: "0.8361", metric_unit: "m" } },
+    { mile: { ratio: "2.59", metric_unit: "km" } }
   ],
   volume: [
     { ounce: { ratio: "29.573", metric_unit: "ml" } },
@@ -30,6 +33,18 @@ const mappings = {
     { pound: { ratio: "0.454", metric_unit: "kg" } },
   ],
 }
+
+const tiny_imperials = [
+  { inch: ["in"] },
+  { foot: ["ft", "feet"] },
+  { yard: ["yd"] },
+  { mile: ["mi"] },
+  { ounce: ["oz"] },
+  { pint: ["pt"] },
+  { quart: ["qt"] },
+  { gallon: ["gal"] },
+  { pound: ["lb"] }
+]
 
 // temperature conversion is not a simple multiplication
 const convertTemp = (f) => {
