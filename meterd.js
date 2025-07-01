@@ -8,7 +8,9 @@
 //   }
 // }
 
-// how much an imperial unit is in its metric equivalent
+/**
+ * how much an imperial unit is in its metric equivalent
+ */
 const ratios = {
   length: [
     { inch: { ratio: "2.54", metric_unit: "cm" } },
@@ -34,6 +36,9 @@ const ratios = {
   ],
 }
 
+/**
+ * ascii characters masquerading as numbers on various websites
+ */
 const non_numerics = [
   { "⅒": 0.1 },
   { "⅑": 0.11 },
@@ -55,6 +60,9 @@ const non_numerics = [
   { "⅞": 0.875 },
 ]
 
+/**
+ * abbreviations & alternative names of imperial units
+ */
 const tiny_imperials = [
   { inch: ["in"] },
   { foot: ["ft", "feet"] },
@@ -67,8 +75,14 @@ const tiny_imperials = [
   { pound: ["lb"] }
 ]
 
+/**
+ * preliminary list of imperial unit names
+ */
 const nano_imperials = [];
 
+/**
+ * add names and abbreviatios and such into same array
+ */
 tiny_imperials.forEach(tiny => {
   Object.keys(tiny).forEach(k => {
     nano_imperials.push(k)
@@ -78,7 +92,9 @@ tiny_imperials.forEach(tiny => {
   })
 })
 
-// flat array of imperial unit names to check against
+/**
+ * flat array of imperial unit names to check against
+ */
 const imperials = nano_imperials.flat();
 
 const scrapeNumbers = () => {
@@ -90,12 +106,22 @@ const scrapeNumbers = () => {
   // return references+numbers+units
 }
 
-// temperature conversion is not a simple multiplication
+/**
+ * temperature conversion is not a simple multiplication
+ * @param {number} f 
+ * @returns string
+ */
+
 const convertTemp = (f) => {
   return Number((5 * Number(f) - 160) / 9).toFixed(2)
 }
 
-// find conversion ratio, return metric value with unit
+/**
+ * find conversion ratio, return metric value with unit
+ * @param {number} value 
+ * @param {array of strings} units 
+ * @returns object
+ */
 const convert = (value, units) => {
   const { ratio } = ratios[units[0]][units[1]];
   if (!ratio) return;
