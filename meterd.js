@@ -8,7 +8,7 @@
 //   }
 // }
 
-// how much an imperial unit in its metric equivalent
+// how much an imperial unit is in its metric equivalent
 const ratios = {
   length: [
     { inch: { ratio: "2.54", metric_unit: "cm" } },
@@ -105,6 +105,9 @@ const convert = (value, units) => {
   return { value: return_value, unit: return_unit };
 }
 
-const convertUnits = () => { }
+// use convert function to work with measurements data on page
+const convertUnits = (imperials) => { }
 
 const page_imperials = scrapeNumbers();
+
+const page_metrics = convertUnits(page_imperials);
