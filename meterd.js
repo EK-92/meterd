@@ -46,6 +46,17 @@ const tiny_imperials = [
   { pound: ["lb"] }
 ]
 
+const nano_imperials = [];
+
+tiny_imperials.forEach(tiny => {
+  Object.values(tiny).forEach(t => {
+    nano_imperials.push(t)
+  })
+})
+
+// flat array of tiny imperials to check against
+const imperials = nano_imperials.flat();
+
 // temperature conversion is not a simple multiplication
 const convertTemp = (f) => {
   return Number((5 * Number(f) - 160) / 9).toFixed(2)
@@ -54,12 +65,17 @@ const convertTemp = (f) => {
 // find conversion ratio, return metric value with unit
 const convert = (value, units) => {
   const { ratio } = mappings[units[0]][units[1]];
+  if (!ratio) return;
   const return_unit = mappings[units[0]][units[1]].metric_unit;
-  const return_value = ratio ? Number(Number(value) * Number(ratio)).toFixed(2) : NaN;
-  if (!return_value) return
+  const return_value = Number(Number(value) * Number(ratio)).toFixed(2);
+  if (!return_value) return;
   return { value: return_value, unit: return_unit };
 }
 
-// TODO: figure out how to find all imperial text and keep track of its parent elements
-const imperials = {
+const scrapeNumbers = () => {
+  const page = document.body.innerText;
+  // aaaand what do I do with it now, regex?!
 }
+const convertNumbers = () => {}
+
+const page_imperials = scrapeNumbers();
