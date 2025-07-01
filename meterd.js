@@ -49,12 +49,15 @@ const tiny_imperials = [
 const nano_imperials = [];
 
 tiny_imperials.forEach(tiny => {
-  Object.values(tiny).forEach(t => {
-    nano_imperials.push(t)
+  Object.keys(tiny).forEach(k => {
+    nano_imperials.push(k)
+  })
+  Object.values(tiny).forEach(v => {
+    nano_imperials.push(v)
   })
 })
 
-// flat array of tiny imperials to check against
+// flat array of imperial unit names to check against
 const imperials = nano_imperials.flat();
 
 // temperature conversion is not a simple multiplication
