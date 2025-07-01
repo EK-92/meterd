@@ -9,7 +9,7 @@
 // }
 
 // how much an imperial unit in its metric equivalent
-const mappings = {
+const ratios = {
   length: [
     { inch: { ratio: "2.54", metric_unit: "cm" } },
     { foot: { ratio: "30.48", metric_unit: "cm" } },
@@ -33,6 +33,27 @@ const mappings = {
     { pound: { ratio: "0.454", metric_unit: "kg" } },
   ],
 }
+
+const non_numerics = [
+  { "⅒": 0.1 },
+  { "⅑": 0.11 },
+  { "⅛": 0.125 },
+  { "⅐": 0.14 },
+  { "⅙": 0.167 },
+  { "⅕": 0.2 },
+  { "¼": 0.25 },
+  { "⅓": 0.33 },
+  { "⅜": 0.375 },
+  { "⅖": 0.4 },
+  { "½": 0.5 },
+  { "⅗": 0.6 },
+  { "⅝": 0.625 },
+  { "⅔": 0.67 },
+  { "¾": 0.75 },
+  { "⅘": 0.8 },
+  { "⅚": 0.83 },
+  { "⅞": 0.875 },
+]
 
 const tiny_imperials = [
   { inch: ["in"] },
@@ -60,6 +81,15 @@ tiny_imperials.forEach(tiny => {
 // flat array of imperial unit names to check against
 const imperials = nano_imperials.flat();
 
+const scrapeNumbers = () => {
+  const page = document.body.innerText;
+  // find all numbers
+  // => find all non-number numbers and convert them
+  // find all units
+  // compare the lists
+  // return references+numbers+units
+}
+
 // temperature conversion is not a simple multiplication
 const convertTemp = (f) => {
   return Number((5 * Number(f) - 160) / 9).toFixed(2)
@@ -67,18 +97,14 @@ const convertTemp = (f) => {
 
 // find conversion ratio, return metric value with unit
 const convert = (value, units) => {
-  const { ratio } = mappings[units[0]][units[1]];
+  const { ratio } = ratios[units[0]][units[1]];
   if (!ratio) return;
-  const return_unit = mappings[units[0]][units[1]].metric_unit;
+  const return_unit = ratios[units[0]][units[1]].metric_unit;
   const return_value = Number(Number(value) * Number(ratio)).toFixed(2);
   if (!return_value) return;
   return { value: return_value, unit: return_unit };
 }
 
-const scrapeNumbers = () => {
-  const page = document.body.innerText;
-  // aaaand what do I do with it now, regex?!
-}
-const convertNumbers = () => {}
+const convertUnits = () => { }
 
 const page_imperials = scrapeNumbers();
