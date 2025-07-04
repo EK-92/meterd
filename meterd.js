@@ -41,24 +41,38 @@ const ratios = {
  */
 const non_numerics = [
   { "⅒": 0.1 },
-  { "⅑": 0.11 },
+  { "⅑": 0.111 },
   { "⅛": 0.125 },
-  { "⅐": 0.14 },
+  { "⅐": 0.143 },
   { "⅙": 0.167 },
   { "⅕": 0.2 },
   { "¼": 0.25 },
-  { "⅓": 0.33 },
+  { "⅓": 0.333 },
   { "⅜": 0.375 },
   { "⅖": 0.4 },
   { "½": 0.5 },
   { "⅗": 0.6 },
   { "⅝": 0.625 },
-  { "⅔": 0.67 },
+  { "⅔": 0.667 },
   { "¾": 0.75 },
   { "⅘": 0.8 },
-  { "⅚": 0.83 },
+  { "⅚": 0.833 },
   { "⅞": 0.875 },
 ]
+
+/**
+ * preliminary list of fake numbers
+ */
+const fake_numbers = [];
+
+/**
+ * add fake numbers into array
+ */
+non_numerics.forEach(num => {
+  Object.keys(num).forEach(k => {
+    nano_imperials.push(k)
+  })
+})
 
 /**
  * abbreviations & alternative names of imperial units
@@ -108,8 +122,8 @@ const scrapeNumbers = () => {
 
 /**
  * temperature conversion is not a simple multiplication
- * @param {number} f 
- * @returns string
+ * @param {number} f temperature in fahrenheits
+ * @returns {string} temperature in celcius
  */
 
 const convertTemp = (f) => {
@@ -118,9 +132,9 @@ const convertTemp = (f) => {
 
 /**
  * find conversion ratio, return metric value with unit
- * @param {number} value 
- * @param {array of strings} units 
- * @returns object
+ * @param {number} value imperial value
+ * @param {array of strings} units [unit_type, unit_name], i.e. [length, inch]
+ * @returns {object} {value: metric_value, unit: metric unit}
  */
 const convert = (value, units) => {
   const { ratio } = ratios[units[0]][units[1]];
