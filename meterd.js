@@ -61,7 +61,7 @@ const non_numerics = [
 ]
 
 /**
- * preliminary list of fake numbers
+ * list of fake numbers
  */
 const fake_numbers = [];
 
@@ -111,6 +111,9 @@ tiny_imperials.forEach(tiny => {
  */
 const imperials = nano_imperials.flat();
 
+/**
+ * TODO: make it work
+ */
 const scrapeNumbers = () => {
   const page = document.body.innerText;
   // find all numbers
@@ -145,6 +148,10 @@ const convert = (value, units) => {
   return { value: return_value, unit: return_unit };
 }
 
+/**
+ * 
+ * @param {*} imperials 
+ */
 // use convert function to work with measurements data on page
 const convertUnits = (imperials) => { }
 
